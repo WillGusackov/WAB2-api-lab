@@ -1,0 +1,28 @@
+{
+  "name": "wab2-api-lab",
+  "version": "1.0.0",
+  "description": "node lab 1",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node index.js",
+    "dev": "nodemon --exec npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WillGusackov/WAB2-api-lab.git"
+  },
+  "author": "WillGusackov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WillGusackov/WAB2-api-lab/issues"
+  },
+  "homepage": "https://github.com/WillGusackov/WAB2-api-lab#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "babel-preset-env": "^0.0.0",
+    "dotenv": "^17.4.2"
+  }
+}
