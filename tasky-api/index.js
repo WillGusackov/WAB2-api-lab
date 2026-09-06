@@ -2,6 +2,9 @@ import dotenv from 'dotenv';
 import express from 'express';
 import tasksRouter from './api/tasks/index.js';
 import './db/index.js';
+// other imports
+import cors from 'cors';
+
 
 dotenv.config();
 
@@ -21,6 +24,8 @@ const port = process.env.PORT;
 
 app.use(express.json());
 app.use(errHandler);
+// Enable CORS for all requests
+app.use(cors());
 
 
 app.use('/api/tasks', tasksRouter);
