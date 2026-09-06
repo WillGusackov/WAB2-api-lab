@@ -4,6 +4,8 @@ import tasksRouter from './api/tasks/index.js';
 import './db/index.js';
 // other imports
 import cors from 'cors';
+import usersRouter from './api/users';
+
 
 
 dotenv.config();
@@ -26,6 +28,10 @@ app.use(express.json());
 app.use(errHandler);
 // Enable CORS for all requests
 app.use(cors());
+//Users router
+app.use('/api/users', usersRouter);
+
+
 
 
 app.use('/api/tasks', tasksRouter);
