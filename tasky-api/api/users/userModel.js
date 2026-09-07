@@ -17,23 +17,16 @@ UserSchema.statics.findByUserName = function (username) {
   return this.findOne({ username: username });
 };
 
-UserSchema.pre('save', async function(next) {
-  const saltRounds = 10; // You can adjust the number of salt rounds
-  //const user = this;
-  if (this.isModified('password') || this.isNew) {
-    try {
-      const hash = await bcrypt.hash(this.password, saltRounds);
-      this.password = hash;
-      next();
-  } catch (error) {
-     next(error);
+UserSchema.pre('save', async function () {
+  const user = this;
+
+  if (!user.isModified('password')) {
+    return;
   }
 
-  } else {
-      next();
-  }
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(user.password, salt);
 });
-
 
 
 export default mongoose.model('User', UserSchema);
