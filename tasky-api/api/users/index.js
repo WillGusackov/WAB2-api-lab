@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
     res.status(200).json(users);
 });
 
-//.... code as before
 
 // register(Create)/Authenticate User
 router.post('/', asyncHandler(async (req, res) => {
@@ -36,6 +35,10 @@ router.post('/', asyncHandler(async (req, res) => {
 
 
 async function registerUser(req, res) {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(req.body.password)) {
+        return res.status(400).json({ success: false, msg: 'Password does not meet the requirements.' });
+    }
     // Add input validation logic here
     await User.create(req.body);
     res.status(201).json({ success: true, msg: 'User successfully created.' });
