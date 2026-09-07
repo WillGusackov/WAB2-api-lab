@@ -5,6 +5,11 @@ import './db/index.js';
 // other imports
 import cors from 'cors';
 import usersRouter from './api/users';
+import authenticate from './authenticate';
+
+
+
+
 
 
 
@@ -31,8 +36,7 @@ app.use(cors());
 //Users router
 app.use('/api/users', usersRouter);
 
-
-
+app.use('/api/tasks', authenticate, tasksRouter);
 
 app.use('/api/tasks', tasksRouter);
 
